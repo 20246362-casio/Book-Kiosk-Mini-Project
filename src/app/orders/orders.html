@@ -1,0 +1,64 @@
+<div class="orders-container">
+
+  <h1>Your Order</h1>
+
+  @if(bookService.cart().length === 0){
+
+    <div class="empty-cart">
+      <h2>Your cart is empty</h2>
+      <p>Add books from the Browse page.</p>
+    </div>
+
+  } @else {
+
+    <div class="cart-items">
+
+      @for(item of bookService.cart(); track item.id){
+
+        <div class="cart-card">
+          <img
+            [src]="item.image"
+            [alt]="item.title">
+          <div class="info">
+
+            <h3>{{item.title}}</h3>
+
+            <p>{{item.author}}</p>
+            <span>
+              ₱{{item.price}}
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="checkout">
+
+      <h2>
+        Total:
+        ₱{{bookService.total()}}
+      </h2>
+
+      <label>
+        Payment Method
+      </label>
+
+      <select>
+        <option>Cash</option>
+        <option>GCash</option>
+        <option>Maya</option>
+        <option>Credit Card</option>
+
+      </select>
+
+      <button class="pay-btn">Ready To Pay</button>
+
+      <button
+      class="clear-btn"
+      (click)="bookService.clearCart()">
+        Clear Cart
+      </button>
+
+    </div>
+  }
+</div>

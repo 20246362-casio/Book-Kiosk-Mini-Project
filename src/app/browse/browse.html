@@ -1,0 +1,12 @@
+<h2>Browse Books</h2>
+<div class="grid">
+
+  @for(book of bookService.books(); track book.id){
+
+    <app-book-card
+      [book]="book"
+      (addBook)="addBook($event)">
+    </app-book-card>
+
+  }
+</div>
